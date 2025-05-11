@@ -8,6 +8,10 @@ let start = document.getElementById("start");
 start.addEventListener("click", function () {
     document.querySelector(".instruction").style.display = "none";
 });
+let soundPermit = document.getElementById("sound-permit");
+start.addEventListener("click", function () {
+    permitSound();
+});
 
 let Year = 1960;
 let temp = 1;
