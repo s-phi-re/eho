@@ -1,0 +1,84 @@
+body{
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+
+    border-image-slice: 50%;
+    border-width:2px;
+}
+
+.instruction{
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    background-color: #ffffff;
+    color: #494949;
+    font-size: 1vh;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+    #permit{
+        position: absolute;
+        top: 6vh;
+        width: 80%;
+        height: 6vh;
+    }
+    #sound-permit{
+        position: absolute;
+        top: 16vh;
+        width: 80%;
+        height: 6vh;
+    }
+    #start{
+        position: absolute;
+        top: 70vh;
+        width: 80%;
+        height: 10vh;
+    }
+    #sentence{
+        position: absolute;
+        top: 35vh;
+        width: 80%;
+        height: 10vh;
+        font-size: 1.9vh;
+        text-align: center;
+    }
+}
+
+.timer{
+    position: absolute;
+    top: 2vh;
+    left: 2vh;
+    font-size: 3vh;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.background {
+    position: fixed;
+    margin-top: -5vh;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* 背景として後ろに */
+    transform: rotate(0deg);
+}
+
+.background::before {
+    content: '';
+    position: absolute;
+    left: -150%;
+    top: -150%;
+    width: 400%;
+    height: 400%;
+    background-repeat: no-repeat;
+    background-size: 50% 50%, 50% 50%;
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    background-image: linear-gradient(#86ab8f, #86ab8f), linear-gradient(#cec09c, #cec09c), linear-gradient(#ce9b98, #ce9b98), linear-gradient(#8c9ec0, #8c9ec0);
+    pointer-events: none;
+}
