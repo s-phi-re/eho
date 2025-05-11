@@ -101,7 +101,9 @@ function startPlayingTone(condition) {
 }
 
 function stopPlayingTone() {
+    // インターバルが設定されている場合はクリア
     if (intervalId) {
+        clearInterval(intervalId);
         intervalId = null; // インターバルIDをリセット
     }
 }
