@@ -83,16 +83,16 @@ function startPlayingTone(condition) {
         if (intervalId) return;
 
         intervalId = setInterval(() => {
-            playTone(getRandomInt(700,830), 5.0);
-            playTone(getRandomInt(700,830), 5.0);
+            playTone(getRandomInt(1000,1400), 5.0);
+            playTone(getRandomInt(1000,1400), 5.0);
         }, getRandomInt(3000, 4000));
     } else if (condition == 3) {
         // すでにインターバルが設定されている場合は何もしない
         if (intervalId) return;
 
         intervalId = setInterval(() => {
-            playTone(getRandomInt(1000,1200), 5.0);
-            playTone(getRandomInt(1000,1200), 5.0);
+            playTone(getRandomInt(2600,3000), 5.0);
+            playTone(getRandomInt(2600,3000), 5.0);
         }, getRandomInt(2000, 3000));
     } else {
         // 条件が満たされなくなったらインターバルをクリア
@@ -186,6 +186,9 @@ function orientation(event) {
         } else {
             condition = 0;
         }
+    }
+    if (degrees >= eho - 15 && degrees < eho + 15) {
+        judgeAnswer();
     }
     let conditionContainer = document.querySelector(".condition");
     conditionContainer.textContent = condition;
@@ -302,10 +305,9 @@ function createQuestion() {
 
 //恵方にたどり着いたらこの関数を呼ぶ
 function judgeAnswer() {
+    Year++;
     let yearContainer = document.querySelector(".year");
     yearContainer.textContent = Year;
-
-    Year++;
     createQuestion();
 }
 
