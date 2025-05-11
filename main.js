@@ -4,6 +4,8 @@ let os;
 // DOM構築完了イベントハンドラ登録
 window.addEventListener("DOMContentLoaded", init);
 
+let audioContext;
+
 let start = document.getElementById("start");
 start.addEventListener("click", function () {
     document.querySelector(".instruction").style.display = "none";
@@ -54,7 +56,6 @@ function init() {
 }
 // ジャイロスコープと地磁気をセンサーから取得
 function orientation(event) {
-    const body = document.querySelector(".background");
 
     let alpha = event.alpha;
     let beta = event.beta; // 前後の傾き
@@ -225,7 +226,6 @@ function preventScroll(event) {
 //------問題生成関連------
 
 //その年の恵方の判定
-let answer;
 function createQuestion() {
     temp = Year % 10;
     if (temp == 4 || temp == 9) {
@@ -248,12 +248,6 @@ function createQuestion() {
     */
 }
 
-function getRandomInt(min, max) {
-    const minCeiled = Math.ceil(min);
-    const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // 上限は除き、下限は含む
-}
-
 //------判定関連------
 
 //恵方にたどり着いたらこの関数を呼ぶ
@@ -263,24 +257,6 @@ function judgeAnswer() {
 
     Year++;
     createQuestion();
-}
-
-function timer() {
-    let timer = document.querySelector(".timer");
-    setInterval(() =>{
-        time -= 10;
-        if (time < 10000) {
-            timer.textContent = "0" + time / 1000;
-        } else {
-            timer.textContent = time / 1000;
-        }
-        if(time <= 0) {
-            timer.textContent = "0.00";
-            document.querySelector(".value1").style.display = "none";
-            document.querySelector(".value2").style.display = "none";
-            btn.textContent = answerNumber;
-        }
-    }, 10);
 }
 
 //音の再生を許可
