@@ -9,6 +9,7 @@ let audioContext;
 let start = document.getElementById("start");
 start.addEventListener("click", function () {
     document.querySelector(".instruction").style.display = "none";
+    playToneInterval(); // 音を鳴らす
 });
 let soundPermit = document.getElementById("sound-permit");
 soundPermit.addEventListener("click", function () {
@@ -26,11 +27,18 @@ function playToneInterval() {
         startPlayingTone(condition);
     } else {
         //stopPlayingTone();
-        playTone(440, 5.0);
+        playTone(380, 5.0);
+        playTone(320, 5.0);
     }
     setTimeout(() => {
         playToneInInterval()
-    }, 5000)
+    }, getRandomInt(3000, 5000));
+}
+
+function getRandomInt(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // 上限は除き、下限は含む
 }
 
 // 初期化
@@ -59,34 +67,33 @@ function init() {
 
     noScroll();
     createQuestion();
-    playToneInterval(); // 音を鳴らす
 }
 
 function startPlayingTone(condition) {
     if (condition == 1) {
         // すでにインターバルが設定されている場合は何もしない
         if (intervalId) return;
-
         // 2秒おきに音を鳴らす
         intervalId = setInterval(() => {
-            playTone(500, 3.0); // 周波数500Hz、1秒間の音
-        }, 2000);
+            playTone(500, 5.0);
+            playTone(600, 5.0);
+        }, getRandomInt(3000, 5000));
     } else if (condition == 2) {
         // すでにインターバルが設定されている場合は何もしない
         if (intervalId) return;
 
-        // 2秒おきに音を鳴らす
         intervalId = setInterval(() => {
-            playTone(700, 3.0); // 周波数500Hz、1秒間の音
-        }, 2000);
+            playTone(700, 5.0);
+            playTone(830, 5.0);
+        }, getRandomInt(3000, 5000));
     } else if (condition == 3) {
         // すでにインターバルが設定されている場合は何もしない
         if (intervalId) return;
 
-        // 2秒おきに音を鳴らす
         intervalId = setInterval(() => {
-            playTone(1000, 4.0); // 周波数500Hz、1秒間の音
-        }, 2000);
+            playTone(1000, 5.0);
+            playTone(1200, 5.0);
+        }, getRandomInt(3000, 5000));
     } else {
         // 条件が満たされなくなったらインターバルをクリア
         stopPlayingTone();
