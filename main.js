@@ -32,7 +32,7 @@ function playToneInterval() {
     }
     setTimeout(() => {
         playToneInterval()
-    }, getRandomInt(3000, 5000));
+    }, getRandomInt(4000, 5000));
 }
 
 function getRandomInt(min, max) {
@@ -77,7 +77,7 @@ function startPlayingTone(condition) {
         intervalId = setInterval(() => {
             playTone(getRandomInt(500,600), 5.0);
             playTone(getRandomInt(500,600), 5.0);
-        }, getRandomInt(3000, 5000));
+        }, getRandomInt(4000, 5000));
     } else if (condition == 2) {
         // すでにインターバルが設定されている場合は何もしない
         if (intervalId) return;
@@ -85,7 +85,7 @@ function startPlayingTone(condition) {
         intervalId = setInterval(() => {
             playTone(getRandomInt(700,830), 5.0);
             playTone(getRandomInt(700,830), 5.0);
-        }, getRandomInt(3000, 5000));
+        }, getRandomInt(3000, 4000));
     } else if (condition == 3) {
         // すでにインターバルが設定されている場合は何もしない
         if (intervalId) return;
@@ -93,10 +93,16 @@ function startPlayingTone(condition) {
         intervalId = setInterval(() => {
             playTone(getRandomInt(1000,1200), 5.0);
             playTone(getRandomInt(1000,1200), 5.0);
-        }, getRandomInt(3000, 5000));
+        }, getRandomInt(2000, 3000));
     } else {
         // 条件が満たされなくなったらインターバルをクリア
         stopPlayingTone();
+    }
+}
+
+function stopPlayingTone() {
+    if (intervalId) {
+        intervalId = null; // インターバルIDをリセット
     }
 }
 
@@ -181,19 +187,8 @@ function orientation(event) {
             condition = 0;
         }
     }
-    if (degrees >= 315 || degrees < 45) {
-        btn.textContent = "-";
-        btn.style.backgroundColor = "#fbb300";
-    } else if (degrees >= 45 && degrees < 135) {
-        btn.textContent = "×";
-        btn.style.backgroundColor = "#d53e33";
-    } else if (degrees >= 135 && degrees < 225) {
-        btn.textContent = "÷";
-        btn.style.backgroundColor = "#377af5";
-    }else if (degrees >= 225 && degrees < 315) {
-        btn.textContent = "+";
-        btn.style.backgroundColor = "#399953";
-    }
+    let conditionContainer = document.querySelector(".condition");
+    conditionContainer.textContent = condition;
     //75, 165, 255, 345
 
 
