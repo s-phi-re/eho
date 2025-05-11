@@ -5,7 +5,7 @@
   <title>アンビエントサウンド</title>
 </head>
 <body>
-  <button id="startButton">音を開始</button>
+  <button id="startButton">START</button>
 
   <script>
     let audioContext;
@@ -17,7 +17,6 @@
 
     document.getElementById('startButton').addEventListener('click', () => {
       // iPhone + Safariの場合はDeviceOrientation APIの使用許可をユーザに求める
-        function permitDeviceOrientationForSafari() {
             DeviceOrientationEvent.requestPermission()
                 .then(response => {
                     if (response === "granted") {
@@ -28,7 +27,6 @@
                     }
                 })
                 .catch(console.error);
-}
 
         // AudioContextの初期化
       audioContext = new (window.AudioContext || window.webkitAudioContext)();
