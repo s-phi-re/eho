@@ -22,6 +22,7 @@ let eho;
 let condition = 0;
 let intervalId; // 音を鳴らすためのインターバルID
 
+/*
 function playToneInterval() {
     if (condition != 0) {
         startPlayingTone(condition);
@@ -40,6 +41,7 @@ function getRandomInt(min, max) {
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // 上限は除き、下限は含む
 }
+*/
 
 // 初期化
 function init() {
@@ -70,36 +72,32 @@ function init() {
 }
 
 function startPlayingTone(condition) {
+    // すでにインターバルが設定されている場合は何もしない
+    if (intervalId) return;
+
     if (condition == 1) {
-        // すでにインターバルが設定されている場合は何もしない
-        if (intervalId) return;
-        // 2秒おきに音を鳴らす
         intervalId = setInterval(() => {
             playTone(getRandomInt(500,600), 5.0);
             playTone(getRandomInt(500,600), 5.0);
         }, getRandomInt(4000, 5000));
     } else if (condition == 2) {
-        // すでにインターバルが設定されている場合は何もしない
-        if (intervalId) return;
-
         intervalId = setInterval(() => {
             playTone(getRandomInt(1000,1400), 5.0);
             playTone(getRandomInt(1000,1400), 5.0);
         }, getRandomInt(3000, 4000));
     } else if (condition == 3) {
-        // すでにインターバルが設定されている場合は何もしない
-        if (intervalId) return;
-
         intervalId = setInterval(() => {
             playTone(getRandomInt(2600,3000), 5.0);
             playTone(getRandomInt(2600,3000), 5.0);
         }, getRandomInt(2000, 3000));
     } else {
-        // 条件が満たされなくなったらインターバルをクリア
-        stopPlayingTone();
+        intervalId = setInterval(() => {
+            playTone(getRandomInt(300,440), 5.0);
+            playTone(getRandomInt(300,440), 5.0);
+        }, getRandomInt(4000, 5000));
     }
 }
-
+/*
 function stopPlayingTone() {
     // インターバルが設定されている場合はクリア
     if (intervalId) {
@@ -107,6 +105,7 @@ function stopPlayingTone() {
         intervalId = null; // インターバルIDをリセット
     }
 }
+*/
 
 // ジャイロスコープと地磁気をセンサーから取得
 function orientation(event) {
@@ -194,6 +193,7 @@ function orientation(event) {
     }
     let conditionContainer = document.querySelector(".condition");
     conditionContainer.textContent = condition;
+    startPlayingTone(condition);
     //75, 165, 255, 345
 
 
