@@ -71,59 +71,87 @@ function orientation(event) {
         degrees = compassHeading(alpha, beta, gamma);
     }
 
+    let judge1 = 0;
+    let judge2 = 0;
+    let judge3 = 0;
     //恵方に近づいたら音を強くする
     if (temp == 4 || temp == 9) {
         if ((degrees < 15 && degrees >= 0) || (degrees < 360 && degrees >= 345) || (degrees >= 165 && degrees < 195)) {
             //近づいている
-            playTone(500, 0.5);
+            setTimeout(() => {
+                playTone(500, 3.0);
+            }, 2000);
         }
         else if ((degrees < 45 && degrees >= 15) || (degrees >= 105 && degrees < 135)) {
             //まあまあ近づいてる
-            playTone(700, 1.0);
+            setTimeout(() => {
+                playTone(700, 3.0);
+            }, 2000);
         }
         else if (degrees >= 45 && degrees < 105) {
             //とても近づいている
-            playTone(1000, 3.0);
+            setTimeout(() => {
+                playTone(1000, 4.0);
+            }, 2000);
         }
     }else if (temp == 1 || temp == 3 || temp == 6 || temp == 8) {
         if ((degrees < 105 && degrees >= 75) || (degrees >= 225 && degrees < 255)) {
             //近づいている
-            playTone(500, 0.5);
+            setTimeout(() => {
+                playTone(500, 3.0);
+            }, 2000);
         }
         else if ((degrees < 135 && degrees >= 105) || (degrees >= 195 && degrees < 225)) {
             //まあまあ近づいてる
-            playTone(700, 1.0);
+            setTimeout(() => {
+                playTone(700, 3.0);
+            }, 2000);
         }
         else if (degrees >= 135 && degrees < 195) {
             //とても近づいている
-            playTone(1000, 3.0);
+            setTimeout(() => {
+                playTone(1000, 4.0);
+            }, 2000);
         }
     }
     else if (temp == 0 || temp == 5) {
         if ((degrees < 195 && degrees >= 165) || (degrees >= 315 && degrees < 345)) {
             //近づいている
-            playTone(500, 0.5);
+            setTimeout(() => {
+                playTone(500, 3.0);
+            }, 2000);
         }
         else if ((degrees < 225 && degrees >= 195) || (degrees >= 285 && degrees < 315)) {
             //まあまあ近づいてる
-            playTone(700, 1.0);
+            setTimeout(() => {
+                playTone(700, 3.0);
+            }, 2000);
         }
         else if (degrees >= 225 && degrees < 285) {
             //とても近づいている
-            playTone(1000, 3.0);
+            setTimeout(() => {
+                playTone(1000, 4.0);
+            }, 2000);
         }
     }
     else if (temp == 2 || temp == 7) {
         if ((degrees < 285 && degrees >= 255) || (degrees >= 45 && degrees < 75)) {
             //近づいている
-            playTone(500, 0.5);
+            setTimeout(() => {
+                playTone(500, 3.0);
+            }, 2000);
         }
         else if ((degrees < 315 && degrees >= 285) || (degrees >= 15 && degrees < 45)) {
             //まあまあ近づいてる
+            setTimeout(() => {
+                playTone(700, 3.0);
+            }, 2000);
         }
         else if ((degrees >= 315 && degrees < 360) || (degrees >= 0 && degrees < 15)) {
             //とても近づいている
-            playTone(1000, 3.0);
+            setTimeout(() => {
+                playTone(1000, 4.0);
+            }, 2000);
         }
     }
     if (degrees >= 315 || degrees < 45) {
