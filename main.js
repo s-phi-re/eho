@@ -9,7 +9,6 @@ let audioContext;
 let start = document.getElementById("start");
 start.addEventListener("click", function () {
     document.querySelector(".instruction").style.display = "none";
-    playToneInterval(); // 音を鳴らす
 });
 let soundPermit = document.getElementById("sound-permit");
 soundPermit.addEventListener("click", function () {
@@ -20,7 +19,7 @@ let Year = 1960;
 let temp = 1;
 let eho;
 let condition = 0;
-let intervalId; // 音を鳴らすためのインターバルID
+let intervalId = null; // 音を鳴らすためのインターバルID
 
 /*
 function playToneInterval() {
