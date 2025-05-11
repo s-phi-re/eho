@@ -27,11 +27,11 @@ function playToneInterval() {
         startPlayingTone(condition);
     } else {
         //stopPlayingTone();
-        playTone(380, 5.0);
-        playTone(320, 5.0);
+        playTone(getRandomInt(300,440), 5.0);
+        playTone(getRandomInt(300,440), 5.0);
     }
     setTimeout(() => {
-        playToneInInterval()
+        playToneInterval()
     }, getRandomInt(3000, 5000));
 }
 
@@ -75,24 +75,24 @@ function startPlayingTone(condition) {
         if (intervalId) return;
         // 2秒おきに音を鳴らす
         intervalId = setInterval(() => {
-            playTone(500, 5.0);
-            playTone(600, 5.0);
+            playTone(getRandomInt(500,600), 5.0);
+            playTone(getRandomInt(500,600), 5.0);
         }, getRandomInt(3000, 5000));
     } else if (condition == 2) {
         // すでにインターバルが設定されている場合は何もしない
         if (intervalId) return;
 
         intervalId = setInterval(() => {
-            playTone(700, 5.0);
-            playTone(830, 5.0);
+            playTone(getRandomInt(700,830), 5.0);
+            playTone(getRandomInt(700,830), 5.0);
         }, getRandomInt(3000, 5000));
     } else if (condition == 3) {
         // すでにインターバルが設定されている場合は何もしない
         if (intervalId) return;
 
         intervalId = setInterval(() => {
-            playTone(1000, 5.0);
-            playTone(1200, 5.0);
+            playTone(getRandomInt(1000,1200), 5.0);
+            playTone(getRandomInt(1000,1200), 5.0);
         }, getRandomInt(3000, 5000));
     } else {
         // 条件が満たされなくなったらインターバルをクリア
