@@ -11,7 +11,7 @@ start.addEventListener("click", function () {
     document.querySelector(".instruction").style.display = "none";
 });
 let soundPermit = document.getElementById("sound-permit");
-start.addEventListener("click", function () {
+soundPermit.addEventListener("click", function () {
     permitSound();
 });
 
@@ -19,12 +19,13 @@ let Year = 1960;
 let temp = 1;
 let eho;
 let condition = 0;
+let intervalId; // 音を鳴らすためのインターバルID
 
 function playToneInterval() {
     if (condition != 0) {
         startPlayingTone(condition);
     } else {
-        stopPlayingTone();
+        //stopPlayingTone();
         playTone(440, 5.0);
     }
     setTimeout(() => {
@@ -61,9 +62,6 @@ function init() {
     playToneInterval(); // 音を鳴らす
 }
 
-
-let intervalId; // 音を鳴らすためのインターバルID
-
 function startPlayingTone(condition) {
     if (condition == 1) {
         // すでにインターバルが設定されている場合は何もしない
@@ -92,13 +90,6 @@ function startPlayingTone(condition) {
     } else {
         // 条件が満たされなくなったらインターバルをクリア
         stopPlayingTone();
-    }
-}
-
-function stopPlayingTone() {
-    if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
     }
 }
 
