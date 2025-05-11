@@ -254,18 +254,11 @@ function getRandomInt(min, max) {
 
 //恵方にたどり着いたらこの関数を呼ぶ
 function judgeAnswer() {
+    let yearContainer = document.querySelector(".year");
+    yearContainer.textContent = Year;
 
-}
-
-const correctAudio = new Audio("Quiz-Correct_Answer02-1.mp3");
-const wrongAudio = new Audio("Quiz-Wrong_Buzzer02-1.mp3");
-function playAudioCorrect() {
-    correctAudio.currentTime = 0;
-    correctAudio.play();
-}
-function playAudioWrong() {
-    wrongAudio.currentTime = 0;
-    wrongAudio.play();
+    Year++;
+    createQuestion();
 }
 
 function timer() {
