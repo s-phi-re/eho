@@ -26,7 +26,7 @@ function playToneInterval() {
     if (condition != 0) {
         startPlayingTone(condition);
     } else {
-        //stopPlayingTone();
+        stopPlayingTone();
         playTone(getRandomInt(300,440), 5.0);
         playTone(getRandomInt(300,440), 5.0);
     }
