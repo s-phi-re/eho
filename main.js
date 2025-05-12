@@ -9,6 +9,7 @@ let audioContext;
 let start = document.getElementById("start");
 start.addEventListener("click", function () {
     document.querySelector(".instruction").style.display = "none";
+    startPlayingTone(condition);
 });
 let soundPermit = document.getElementById("sound-permit");
 soundPermit.addEventListener("click", function () {
@@ -77,22 +78,26 @@ function startPlayingTone(condition) {
     if (condition == 1) {
         intervalId = setInterval(() => {
             playTone(getRandomInt(500,600), 5.0);
-            playTone(getRandomInt(500,600), 5.0);
+            playTone(getRandomInt(500, 600), 5.0);
+            startPlayingTone(condition);
         }, getRandomInt(4000, 5000));
     } else if (condition == 2) {
         intervalId = setInterval(() => {
             playTone(getRandomInt(1000,1400), 5.0);
-            playTone(getRandomInt(1000,1400), 5.0);
+            playTone(getRandomInt(1000, 1400), 5.0);
+            startPlayingTone(condition);
         }, getRandomInt(3000, 4000));
     } else if (condition == 3) {
         intervalId = setInterval(() => {
             playTone(getRandomInt(2600,3000), 5.0);
-            playTone(getRandomInt(2600,3000), 5.0);
+            playTone(getRandomInt(2600, 3000), 5.0);
+            startPlayingTone(condition);
         }, getRandomInt(2000, 3000));
     } else {
         intervalId = setInterval(() => {
             playTone(getRandomInt(300,440), 5.0);
             playTone(getRandomInt(300,440), 5.0);
+            startPlayingTone(condition);
         }, getRandomInt(4000, 5000));
     }
 }
