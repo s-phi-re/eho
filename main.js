@@ -137,13 +137,14 @@ function startPlayingTone() {
                 delay = getRandomInt(2000, 3000);
                 break;
             default:
-                freqRange = [300, 440];
+                playTone(getRandomInt(300,440), 5.0);
+                playTone(getRandomInt(300,440), 5.0);
                 delay = getRandomInt(4000, 5000);
                 break;
         }
 
-        playTone(getRandomInt(...freqRange), 5.0);
-        playTone(getRandomInt(...freqRange), 5.0);
+        playTone(getRandomInt(freqRange), 5.0);
+        playTone(getRandomInt(freqRange), 5.0);
 
         setTimeout(playLoop, delay); // 再帰的に次の音を鳴らす
     }
