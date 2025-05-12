@@ -114,6 +114,7 @@ function stopPlayingTone() {
 let isPlaying = false; // 音再生の状態管理用フラグ
 
 function startPlayingTone() {
+    playTone(440, 2.0); // A4の音を2秒鳴らす
     if (isPlaying) return;
     isPlaying = true;
 
