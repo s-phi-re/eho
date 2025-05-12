@@ -93,24 +93,24 @@ function startPlayingTone() {
         switch (condition) {
             case 1:
                 freqRange = [500, 600];
-                delay = getRandomInt(4000, 5000);
-                break;
-            case 2:
-                freqRange = [1000, 1400];
                 delay = getRandomInt(3000, 4000);
                 break;
+            case 2:
+                freqRange = [750, 850];
+                delay = getRandomInt(2000, 2000);
+                break;
             case 3:
-                freqRange = [2600, 3000];
-                delay = getRandomInt(2000, 3000);
+                freqRange = [1000, 1300];
+                delay = getRandomInt(1000, 2000);
                 break;
             default:
                 freqRange = [300, 440];
-                delay = getRandomInt(4000, 5000);
+                delay = getRandomInt(3000, 4000);
                 break;
         }
 
-        playTone(getRandomInt(...freqRange), 5.0);
-        playTone(getRandomInt(...freqRange), 5.0);
+        playTone(getRandomInt(...freqRange), 4.0);
+        playTone(getRandomInt(...freqRange), 4.0);
 
         setTimeout(playLoop, delay); // 再帰的に次の音を鳴らす
     }
