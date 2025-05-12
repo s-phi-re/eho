@@ -171,7 +171,6 @@ function orientation(event) {
         // deviceorientationabsoluteイベントのalphaを補正
         degrees = compassHeading(alpha, beta, gamma);
     }
-    let condition;
 
     //恵方に近づいたら音を強くする
     if (temp == 4 || temp == 9) {
