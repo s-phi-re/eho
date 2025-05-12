@@ -370,6 +370,7 @@ function permitSound() {
         audioContext.resume();
     }
     alert("音の再生を許可しました");
+    playTone(440, 2.0); // A4の音を2秒鳴らす
 }
 
 // 音を再生する関数
