@@ -109,8 +109,8 @@ function startPlayingTone() {
                 break;
         }
 
-        playTone(getRandomInt(freqRange), 5.0);
-        playTone(getRandomInt(freqRange), 5.0);
+        playTone(getRandomInt(...freqRange), 5.0);
+        playTone(getRandomInt(...freqRange), 5.0);
 
         setTimeout(playLoop, delay); // 再帰的に次の音を鳴らす
     }
