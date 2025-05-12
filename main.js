@@ -9,7 +9,7 @@ let audioContext;
 let start = document.getElementById("start");
 start.addEventListener("click", function () {
     document.querySelector(".instruction").style.display = "none";
-    startPlayingTone(condition);
+    startPlayingTone();
 });
 let soundPermit = document.getElementById("sound-permit");
 soundPermit.addEventListener("click", function () {
@@ -70,7 +70,7 @@ function init() {
     noScroll();
     createQuestion();
 }
-
+/*
 function startPlayingTone(condition) {
     // すでにインターバルが設定されている場合は何もしない
     if (intervalId) return;
@@ -101,7 +101,7 @@ function startPlayingTone(condition) {
         }, getRandomInt(4000, 5000));
     }
 }
-/*
+
 function stopPlayingTone() {
     // インターバルが設定されている場合はクリア
     if (intervalId) {
@@ -110,6 +110,50 @@ function stopPlayingTone() {
     }
 }
 */
+
+let isPlaying = false; // 音再生の状態管理用フラグ
+
+function startPlayingTone() {
+    if (isPlaying) return;
+    isPlaying = true;
+
+    function playLoop() {
+        if (!isPlaying) return;
+
+        let freqRange;
+        let delay;
+
+        switch (condition) {
+            case 1:
+                freqRange = [500, 600];
+                delay = getRandomInt(4000, 5000);
+                break;
+            case 2:
+                freqRange = [1000, 1400];
+                delay = getRandomInt(3000, 4000);
+                break;
+            case 3:
+                freqRange = [2600, 3000];
+                delay = getRandomInt(2000, 3000);
+                break;
+            default:
+                freqRange = [300, 440];
+                delay = getRandomInt(4000, 5000);
+                break;
+        }
+
+        playTone(getRandomInt(...freqRange), 5.0);
+        playTone(getRandomInt(...freqRange), 5.0);
+
+        setTimeout(playLoop, delay); // 再帰的に次の音を鳴らす
+    }
+
+    playLoop();
+}
+
+function stopPlayingTone() {
+    isPlaying = false;
+}
 
 // ジャイロスコープと地磁気をセンサーから取得
 function orientation(event) {
@@ -127,77 +171,77 @@ function orientation(event) {
         // deviceorientationabsoluteイベントのalphaを補正
         degrees = compassHeading(alpha, beta, gamma);
     }
+    let newCondition;
 
     //恵方に近づいたら音を強くする
     if (temp == 4 || temp == 9) {
         if ((degrees < 15 && degrees >= 0) || (degrees < 360 && degrees >= 345) || (degrees >= 165 && degrees < 195)) {
             //近づいている
-            condition = 1;
+            newCondition = 1;
         }
         else if ((degrees < 45 && degrees >= 15) || (degrees >= 105 && degrees < 135)) {
             //まあまあ近づいてる
-            condition = 2;
+            newCondition = 2;
         }
         else if (degrees >= 45 && degrees < 105) {
             //とても近づいている
-            condition = 3;
+            newCondition = 3;
         } else {
-            condition = 0;
+            newCondition = 0;
         }
     }else if (temp == 1 || temp == 3 || temp == 6 || temp == 8) {
         if ((degrees < 105 && degrees >= 75) || (degrees >= 225 && degrees < 255)) {
             //近づいている
-            condition = 1;
+            newCondition = 1;
         }
         else if ((degrees < 135 && degrees >= 105) || (degrees >= 195 && degrees < 225)) {
             //まあまあ近づいてる
-            condition = 2;
+            newCondition = 2;
         }
         else if (degrees >= 135 && degrees < 195) {
             //とても近づいている
-            condition = 3;
+            newCondition = 3;
         } else {
-            condition = 0;
+            newCondition = 0;
         }
     }
     else if (temp == 0 || temp == 5) {
         if ((degrees < 195 && degrees >= 165) || (degrees >= 315 && degrees < 345)) {
             //近づいている
-            condition = 1;
+            newCondition = 1;
         }
         else if ((degrees < 225 && degrees >= 195) || (degrees >= 285 && degrees < 315)) {
             //まあまあ近づいてる
-            condition = 2;
+            newCondition = 2;
         }
         else if (degrees >= 225 && degrees < 285) {
             //とても近づいている
-            condition = 3;
+            newCondition = 3;
         } else {
-            condition = 0;
+            newCondition = 0;
         }
     }
     else if (temp == 2 || temp == 7) {
         if ((degrees < 285 && degrees >= 255) || (degrees >= 45 && degrees < 75)) {
             //近づいている
-            condition = 1;
+            newCondition = 1;
         }
         else if ((degrees < 315 && degrees >= 285) || (degrees >= 15 && degrees < 45)) {
             //まあまあ近づいてる
-            condition = 2;
+            newCondition = 2;
         }
         else if ((degrees >= 315 && degrees < 360) || (degrees >= 0 && degrees < 15)) {
             //とても近づいている
-            condition = 3;
+            newCondition = 3;
         } else {
-            condition = 0;
+            newCondition = 0;
         }
-    }
-    if (degrees >= eho - 15 && degrees < eho + 15) {
-        judgeAnswer();
     }
     let conditionContainer = document.querySelector(".condition");
     conditionContainer.textContent = condition;
-    startPlayingTone(condition);
+    if (degrees >= eho - 15 && degrees < eho + 15) {
+        judgeAnswer();
+    }
     //75, 165, 255, 345
 
 
