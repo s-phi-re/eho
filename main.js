@@ -70,46 +70,12 @@ function init() {
     noScroll();
     createQuestion();
 }
-/*
-function startPlayingTone(condition) {
-    // すでにインターバルが設定されている場合は何もしない
-    if (intervalId) return;
 
-    if (condition == 1) {
-        intervalId = setInterval(() => {
-            playTone(getRandomInt(500,600), 5.0);
-            playTone(getRandomInt(500, 600), 5.0);
-            startPlayingTone(condition);
-        }, getRandomInt(4000, 5000));
-    } else if (condition == 2) {
-        intervalId = setInterval(() => {
-            playTone(getRandomInt(1000,1400), 5.0);
-            playTone(getRandomInt(1000, 1400), 5.0);
-            startPlayingTone(condition);
-        }, getRandomInt(3000, 4000));
-    } else if (condition == 3) {
-        intervalId = setInterval(() => {
-            playTone(getRandomInt(2600,3000), 5.0);
-            playTone(getRandomInt(2600, 3000), 5.0);
-            startPlayingTone(condition);
-        }, getRandomInt(2000, 3000));
-    } else {
-        intervalId = setInterval(() => {
-            playTone(getRandomInt(300,440), 5.0);
-            playTone(getRandomInt(300,440), 5.0);
-            startPlayingTone(condition);
-        }, getRandomInt(4000, 5000));
-    }
+function getRandomInt(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // 上限は除き、下限は含む
 }
-
-function stopPlayingTone() {
-    // インターバルが設定されている場合はクリア
-    if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null; // インターバルIDをリセット
-    }
-}
-*/
 
 let isPlaying = false; // 音再生の状態管理用フラグ
 
@@ -138,8 +104,7 @@ function startPlayingTone() {
                 delay = getRandomInt(2000, 3000);
                 break;
             default:
-                playTone(getRandomInt(300,440), 5.0);
-                playTone(getRandomInt(300,440), 5.0);
+                freqRange = [300, 440];
                 delay = getRandomInt(4000, 5000);
                 break;
         }
